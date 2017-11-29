@@ -168,13 +168,13 @@ contains
     upper_x_bound = self%grid%nx
     upper_y_bound = self%grid%ny
 
-    write(*,"('Allocating ',(A),' field with bounds: (',I1,':',I3, ',',I1,':',I3,')')") &
+    write(*,"('Allocating ',(A),' field with bounds: (',I0,':',I0, ',',I0,':',I0,')')") &
                TRIM(ADJUSTL(fld_type)), &
                1, upper_x_bound, 1, upper_y_bound
-    write(*,"('Internal region is:(',I1,':',I3, ',',I1,':',I3,')' )") &
+    write(*,"('Internal region is:(',I0,':',I0, ',',I0,':',I0,')' )") &
          self%internal%xstart, self%internal%xstop, &
          self%internal%ystart, self%internal%ystop
-    write(*,"('Grid has bounds:  (',I1,':',I3, ',',I1,':',I3,')')") &
+    write(*,"('Grid has bounds:  (',I0,':',I0, ',',I0,':',I0,')')") &
          1, self%grid%nx, 1, self%grid%ny
 
     ! Allocating with a lower bound != 1 causes problems whenever
@@ -1092,7 +1092,7 @@ contains
     fld%ntiles = ntilex*ntiley
     nthreads = 1
 !$  nthreads = omp_get_max_threads()
-    WRITE (*,"(/'Have ',I3,' OpenMP threads available.')") nthreads
+    WRITE (*,"(/'Have ',I0,' OpenMP threads available.')") nthreads
 
     ! If we've not manually specified a grid of tiles then use the no. of
     ! threads
@@ -1125,7 +1125,7 @@ contains
 
     END IF ! automatic determination of tiling grid
 
-    WRITE (*,"('OpenMP thread tiling using grid of ',I3,'x',I3)") ntilex,ntiley
+    WRITE (*,"('OpenMP thread tiling using grid of ',I0,'x',I0)") ntilex,ntiley
     write(*,*) 'ntiles for this field = ',fld%ntiles
 
     ALLOCATE(fld%tile(fld%ntiles), Stat=ierr)
@@ -1183,8 +1183,8 @@ contains
     if(print_tiles)then
        WRITE(*,"('Tile width = ',I4,', tile height = ',I4)") &
             internal_width, internal_height
-       WRITE(*,"('iover = ',I3,', iunder = ',I3)") iover, iunder
-       WRITE(*,"('jover = ',I3,', junder = ',I3)") jover, junder
+       WRITE(*,"('iover = ',I0,', iunder = ',I0)") iover, iunder
+       WRITE(*,"('jover = ',I0,', junder = ',I0)") jover, junder
     end if
 
     ith = 1
